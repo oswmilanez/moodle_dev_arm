@@ -39,6 +39,13 @@ RUN apt-get install -y \
      php-xmlrpc \
      php-zip \ 
      php-ldap \
+     php-sqlite3 \
+     php-pgsql \
+     php-redis \
+     php-oauth \
+     php-mongodb \
+     php-memcache \
+     php-memcached \
      php-pear
 
 #composer
