@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #php
-/etc/init.d/php7.4-fpm start
+/etc/init.d/php8.2-fpm start
 
 #nginx
 /usr/sbin/nginx -g 'daemon off;'
