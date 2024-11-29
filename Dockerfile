@@ -1,5 +1,5 @@
 #OS
-FROM debian:11
+FROM debian:12
 
 # Owner
 LABEL key="Oswaldo Milanez Neto <oswaldo@milanez.net>"
@@ -11,7 +11,7 @@ VOLUME /var/www
 EXPOSE 80 443
 
 # Update and Upgrade
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade -y
 
 # Install Basic
 RUN apt-get install -y curl vim htop wget zip unzip
@@ -60,15 +60,15 @@ COPY ./cert/nginx-selfsigned.key /etc/pki/nginx/private/nginx-selfsigned.key
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 #Configure PHP
-RUN sed -i 's/display_errors\ =\ Off/display_errors\ =\ On/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/;error_log\ =\ syslog/error_log\ =\ \/dev\/stdout/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/memory_limit\ =\ 128M/memory_limit\ =\ 1024M/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/max_execution_time\ =\ 30/max_execution_time\ =\ 300/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/max_input_time\ =\ 60/max_execution_time\ =\ 600/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/upload_max_filesize\ =\ 2/upload_max_filesize\ =\ 1000/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/post_max_size\ =\ 8/post_max_size\ =\ 1000/g' /etc/php/7.4/fpm/php.ini
-RUN sed -i 's/;max_input_vars\ =\ 1000/max_input_vars\ =\ 5000/g' /etc/php/7.4/fpm/php.ini
- 
+RUN sed -i 's/display_errors\ =\ Off/display_errors\ =\ On/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/;error_log\ =\ syslog/error_log\ =\ \/dev\/stdout/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/memory_limit\ =\ 128M/memory_limit\ =\ 1024M/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/max_execution_time\ =\ 30/max_execution_time\ =\ 300/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/max_input_time\ =\ 60/max_execution_time\ =\ 600/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/upload_max_filesize\ =\ 2/upload_max_filesize\ =\ 1000/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/post_max_size\ =\ 8/post_max_size\ =\ 1000/g' /etc/php/8.2/fpm/php.ini
+RUN sed -i 's/;max_input_vars\ =\ 1000/max_input_vars\ =\ 5000/g' /etc/php/8.2/fpm/php.ini
+
 
 # Start Container
 COPY docker-entrypoint.sh /root/docker-entrypoint.sh
